@@ -3,125 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple Calculator</title>
+  <title>Embedded Pie Chart</title>
   <style>
     body {
+      margin: 0;
+      padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       background-color: #f0f0f0;
-      font-family: Arial, sans-serif;
     }
 
-    .calculator {
-      width: 300px;
-      padding: 20px;
-      border-radius: 10px;
-      background-color: #fff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .display {
-      width: 100%;
-      height: 60px;
-      background-color: #222;
-      color: #fff;
-      font-size: 24px;
-      text-align: right;
-      padding: 10px;
-      border-radius: 5px;
-      margin-bottom: 10px;
-      box-sizing: border-box;
-    }
-
-    .buttons {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-    }
-
-    button {
-      width: 100%;
-      height: 60px;
-      font-size: 20px;
+    iframe {
       border: none;
-      border-radius: 5px;
-      background-color: #4CAF50;
-      color: white;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    button.operator {
-      background-color: #f39c12;
-    }
-
-    button.clear {
-      background-color: #e74c3c;
-    }
-
-    button:hover {
-      background-color: #3e8e41;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
   </style>
 </head>
 <body>
 
-  <div class="calculator">
-    <div class="display" id="display">0</div>
-    <div class="buttons">
-      <button class="clear" onclick="clearDisplay()">C</button>
-      <button onclick="appendToDisplay('(')">(</button>
-      <button onclick="appendToDisplay(')')">)</button>
-      <button class="operator" onclick="appendToDisplay('/')">÷</button>
-
-      <button onclick="appendToDisplay('7')">7</button>
-      <button onclick="appendToDisplay('8')">8</button>
-      <button onclick="appendToDisplay('9')">9</button>
-      <button class="operator" onclick="appendToDisplay('*')">×</button>
-
-      <button onclick="appendToDisplay('4')">4</button>
-      <button onclick="appendToDisplay('5')">5</button>
-      <button onclick="appendToDisplay('6')">6</button>
-      <button class="operator" onclick="appendToDisplay('-')">−</button>
-
-      <button onclick="appendToDisplay('1')">1</button>
-      <button onclick="appendToDisplay('2')">2</button>
-      <button onclick="appendToDisplay('3')">3</button>
-      <button class="operator" onclick="appendToDisplay('+')">+</button>
-
-      <button onclick="appendToDisplay('0')">0</button>
-      <button onclick="appendToDisplay('.')">.</button>
-      <button class="operator" onclick="calculateResult()">=</button>
-    </div>
-  </div>
-
-  <script>
-    const display = document.getElementById('display');
-
-    function clearDisplay() {
-      display.textContent = '0';
-    }
-
-    function appendToDisplay(value) {
-      if (display.textContent === '0') {
-        display.textContent = value;
-      } else {
-        display.textContent += value;
-      }
-    }
-
-    function calculateResult() {
-      try {
-        display.textContent = eval(display.textContent);
-      } catch {
-        display.textContent = 'Error';
-      }
-    }
-  </script>
+  <iframe 
+    width="600" 
+    height="371" 
+    seamless 
+    frameborder="0" 
+    scrolling="no" 
+    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRZEZtA1nitcIH_Iw5pK50PGN9__J7UZMeoaKg6tL_wGcxZLdijjHyW-yUgp0FjFFUGSMT_HD_Eny0z/pubchart?oid=484123448&amp;format=interactive">
+  </iframe>
 
 </body>
 </html>
-
-
