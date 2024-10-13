@@ -1,28 +1,49 @@
-<html>
-  <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Pie Chart</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    // Load the Google Charts package
+    google.charts.load('current', {packages: ['corechart']});
+    
+    // Set a callback function to run when the Google Visualization API is loaded
+    google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Option', 'Responses'],
-          ['Option 1', 30],
-          ['Option 2', 50],
-          ['Option 3', 20]
-        ]);
+    function drawChart() {
+      // Fetch data from the Google Sheet
+      const query = new google.visualization.Query(
+        'https://docs.google.com/spreadsheets/d/1LZuns2kW5jBE6RUEIUD4unT2FvUWID8bfLqYDs0_iWw/edit?usp=sharing'
+      );
 
-        var options = {
-          title: 'Survey Responses'
+      // Send the query and handle the response
+      query.send(response => {
+        if (response.isError()) {
+          console.error('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+          return;
+        }
+        const data = response.getDataTable();
+
+        // Define chart options
+        const options = {
+          title: 'Pie Chart from Google Sheets Data',
+          is3D: true,
+          width: 800,
+          height: 500
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        // Create the chart and draw it
+        const chart = new google.visualization.PieChart(document.getElementById('chart_div'));
         chart.draw(data, options);
-      }
-    </script>
-  </head>
-  <body>
-    <div id="piechart" style="width: 900px; height: 500px;"></div>
-  </body>
+      });
+    }
+  </script>
+</head>
+<body>
+  <h1>Google Pie Chart Example</h1>
+  <div id="chart_div"></div>
+</body>
 </html>
+
